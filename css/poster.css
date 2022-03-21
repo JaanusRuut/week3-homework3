@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
 * {
     margin: 0;
@@ -19,53 +19,72 @@ html {
 }
 
 .movie-title {
-    text-transform: uppercasel;
-    /*add for animation*/
-    transform:  translateY(-150px);
-    animation:  slide-from-up 2s ease-in-out forwards;
+    text-transform: capitalize;
+    margin-top: 2rem;
+    transform: translateY(-150px);
+    animation: slide-from-top 3.5s ease-in-out forwards;
 }
 
-@keyframes slide-from-up {
-    55% {transform: translateY(11px);}
+@keyframes slide-from-top {
+    80% {transform: translateY(8px);}
     100% {transform: translateY(0);}
+
 }
 
-.movie-poster-container img {
+.modal {
+    display: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(82, 77, 77, 0.671);
+    z-index: 2;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+.modal-content {
+    background-color: blanchedalmond;
+    margin: 5% auto;
+    padding: 5rem;
+    width: 600px;
+    height: 600px;
+    animation: zoom-in 1s;
+}
+
+@keyframes zoom-in {
+    0% {transform: scale(0);}
+    100% {transform: scale(1);}
+}
+
+.closeBtn {
+    float: right;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.movie-poster-container-modal {
+    width: 300px;
+}
+
+.movie-poster img {
     margin-top: 2rem;
     height: 500px;
-    border-radius: 15px;
-    /*add for animation*/
-    position: relative;
-    -webkit-animation:glide 2s ease-in-out alternate infinite;
+    border-radius: 20px;
+    position: center;
+    cursor: pointer;
 }
 
-@-webkit-keyframes glide  {
-    from {
-       left: 1px;
-       top:0px;
-    }
-    
-    to {
-       left:0.1rem;
-       top:15px;
-    }
- 
- }
-
 .movie-rating {
-    display: inline-flexbox;
+    display: inline-block;
     border: 1px solid #151515;
     padding: 0.3rem;
     border-radius: 5px;
-
-
-
-
 }
-  
+
 .movie-duration {
-margin-left: 1rem;
-letter-spacing: 0.2rem;
+    margin-left: 1rem;
+    letter-spacing: 0.2rem;
 }
 
 .movie-duration:before {
@@ -80,6 +99,17 @@ letter-spacing: 0.2rem;
     margin-bottom: 1rem;
 }
 
+.movie-info-container > *:not(.movie-info-title) {
+    opacity: 0;
+    /*for animation*/
+    animation: fade-in 3.5s ease-in-out forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fade-in {
+    100% {opacity: 1;}
+}
+
 .movie-info-overview-title {
     text-transform: capitalize;
     letter-spacing: 0.1rem;
@@ -91,6 +121,59 @@ letter-spacing: 0.2rem;
 
 .movie-info-actions ul {
     list-style: none;
+}
+
+.container {
+    width: 75%;
+    text-align: center;
+    margin: 3rem auto;
+}
+
+.carousel {
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.carousel img {
+    width: 100%;
+}
+
+.carousel .carousel__item,
+.carousel .carousel__item--hidden {
+    display: none;
+}
+
+.carousel .carousel__item--visible {
+    display: block;
+    animation: fadeIn 0.6s;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.carousel .carousel__actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel .carousel__actions button {
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    height: 50px;
+    width: 50px;
+    border: 0;
+    background-color: rgba(210, 180, 140, 0.712);
+    font-size: 2rem;
+    color: white;
+    margin: 0.5rem;
 }
 
 .movie-info-actions ul li {
@@ -113,27 +196,10 @@ letter-spacing: 0.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-   
 }
-
-.movie-info-container > *:not(.movie-info-title){
-    opacity: 0;
-    /*for animation*/
-    animation: fade-in 1.5s ease-in-out forwards;
-    animation-delay: 0.9s;
-}
-
-@keyframes fade-in {
-    80% {transform: translateY(11px)}
-    100% {opacity: 1;}
-}
-
-  
-
-
 
 footer {
-    margin-top: -1rem;
+    margin-top: 2rem;
     text-align: center;
     color: #777;
 }
@@ -144,9 +210,9 @@ footer ul {
 
 footer ul li {
     display: inline-block;
-    margin-top: 1rem;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
 }
 
 footer ul li a {
@@ -154,4 +220,4 @@ footer ul li a {
     text-transform: uppercase;
     text-decoration: none;
     color: #777;
- 
+}
